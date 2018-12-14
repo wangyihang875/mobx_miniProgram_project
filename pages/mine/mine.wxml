@@ -1,0 +1,35 @@
+<!--pages/mine/mine.wxml-->
+<view class='container'>
+	<view class='topblock_view'>
+		<view class='headimg_view'>
+		</view>
+		<text class='name_text'>缘分天空</text>
+	</view>
+
+	<view class='btn_contentview'>
+		<view class='btn_view'>
+			<image class='btn_img' src='../../images/icon_bangding.png' />
+			<text class='btn_text'>绑定手机</text>
+			<image class='jt_img' src='../../images/icon_jt.png' />
+		</view>
+		<view class='bar'></view>
+	</view>
+
+	<view class='btn_contentview'>
+		<view class='btn_view'>
+			<image class='btn_img' src='../../images/icon_renzheng.png' />
+			<text class='btn_text'>医生认证</text>
+			<image class='jt_img' src='../../images/icon_jt.png' />
+		</view>
+		<view class='bar'></view>
+	</view>
+
+	<view class='btn_contentview'>
+		<view class='btn_view'>
+			<image class='btn_img' src='../../images/icon_tuichu.png' />
+			<text class='btn_text'>退出登录</text>
+			<image class='jt_img' src='../../images/icon_jt.png' />
+		</view>
+	</view>
+	
+</view>

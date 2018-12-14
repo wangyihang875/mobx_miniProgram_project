@@ -1,0 +1,49 @@
+{
+  "pages":[
+		"pages/home/home",
+		"pages/search/search",
+		"pages/article/article",
+		"pages/article/articleDetail",
+
+    "pages/index/index",
+    "pages/live/live",
+		"pages/video/video",
+	
+    "pages/question/question",
+    "pages/mine/mine",
+    
+    "pages/logs/logs"
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "WeChat",
+    "navigationBarTextStyle":"black"
+  },
+  "tabBar": {
+    "color": "#999",
+    "selectedColor": "#2EB6AA",
+    "backgroundColor": "#fff",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/home/home",
+        "text": "常笑健康",
+        "iconPath": "images/tab_home.png",
+        "selectedIconPath": "images/tab_home_s.png"
+      },
+      {
+        "pagePath": "pages/question/question",
+        "text": "我的提问",
+        "iconPath": "images/tab_question.png",
+        "selectedIconPath": "images/tab_question_s.png"
+      },
+      {
+        "pagePath": "pages/mine/mine",
+        "text": "个人",
+        "iconPath": "images/tab_mine.png",
+        "selectedIconPath": "images/tab_mine_s.png"
+      }
+    ]
+  }
+}

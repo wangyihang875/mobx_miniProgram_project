@@ -1,0 +1,27 @@
+<!--pages/search/search.wxml-->
+<view class='container'>
+	<view class='searchbar'>
+		<image class='search_img' src='../../images/icon_fangdajing.png' />
+		<input placeholder="请输入搜索内容..."
+		placeholder-class='placeholdertext' focus=true
+		/>
+	</view>
+
+	<view class='label_view'><text class='label_text'>热门搜索</text></view>
+	<view class='keywords_view'>
+		<view class='word_view'><text class='word_text'>中国医学管理奖</text></view>
+		<view class='word_view'><text class='word_text'>中国医学</text></view>
+		<view class='word_view'><text class='word_text'>管理奖</text></view>
+		<view class='word_view'><text class='word_text'>医学</text></view>
+	</view>
+	<view class='his_view'>
+		<view class='label_view'><text class='label_text'>搜索历史</text></view>
+		<image class='delete_img' src='../../images/icon_lajitong.png' />
+	</view>
+	<view class='keywords_view'>
+		<view class='word_view'><text class='word_text'>中国医学管理奖</text></view>
+		<view class='word_view'><text class='word_text'>中国医学管理奖</text></view>
+		<view class='word_view'><text class='word_text'>中国医学管理奖</text></view>
+		<view class='word_view'><text class='word_text'>中国医学管理奖</text></view>
+	</view>
+</view>

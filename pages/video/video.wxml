@@ -1,0 +1,67 @@
+<!--pages/article/article.wxml-->
+		<view class='bar'></view>
+    <scroll-view scroll-x="true" class="tab-h" scroll-left="{{scrollLeft}}">
+        <view class="tab-item {{currentTab==0?'active':''}}"  data-current="0" bindtap="swichNav">健康食谱</view>
+        <view class="tab-item {{currentTab==1?'active':''}}" data-current="1" bindtap="swichNav">日常预防</view>
+        <view class="tab-item {{currentTab==2?'active':''}}" data-current="2" bindtap="swichNav">前沿科普</view>
+				<view class="tab-item {{currentTab==3?'active':''}}" data-current="3" bindtap="swichNav">名医对话</view>
+    </scroll-view>
+		
+    <swiper class="tab-content" current="{{currentTab}}" duration="300" bindchange="switchTab"
+     style="height:{{winHeight}}rpx">
+        <swiper-item catchtouchmove="stopTouchMove">
+					<scroll-view scroll-y="true" class="scoll-h" >
+            <view class='video_view'>
+							<view class='video_img'></view>
+							<view class='video_titleview'>
+								<text class='video_titletext'>国家医保局阿扎</text>
+							</view>
+							<view class='bar'></view>
+						</view>
+
+						<view class='video_view'>
+							<view class='video_img'></view>
+							<view class='video_titleview'>
+								<text class='video_titletext'>国家医保局阿扎</text>
+							</view>
+							<view class='bar'></view>
+						</view>
+
+						<view class='video_view'>
+							<view class='video_img'></view>
+							<view class='video_titleview'>
+								<text class='video_titletext'>国家医保局阿扎</text>
+							</view>
+							<view class='bar'></view>
+						</view>
+
+						<view class='video_view'>
+							<view class='video_img'></view>
+							<view class='video_titleview'>
+								<text class='video_titletext'>国家医保局阿扎</text>
+							</view>
+							<view class='bar'></view>
+						</view>
+
+						<view class='video_view'>
+							<view class='video_img'></view>
+							<view class='video_titleview'>
+								<text class='video_titletext'>国家医保局阿扎</text>
+							</view>
+							<view class='bar'></view>
+						</view>
+					</scroll-view>	
+        </swiper-item>
+
+				<swiper-item catchtouchmove="stopTouchMove">
+            <scroll-view scroll-y="true" class="scoll-h" >
+
+						</scroll-view>
+        </swiper-item>
+
+				<swiper-item catchtouchmove="stopTouchMove">
+           <scroll-view scroll-y="true" class="scoll-h" >
+						
+						</scroll-view>
+        </swiper-item>
+    </swiper>

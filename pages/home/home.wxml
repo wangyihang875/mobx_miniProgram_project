@@ -1,0 +1,163 @@
+<!--pages/home/home.wxml-->
+<view class='container'>
+
+<navigator url="/pages/search/search" hover-class="none">
+  <view class='searchbar'>
+		<image class='search_img' src='../../images/icon_fangdajing.png'></image>
+		<text class='placeholdertext'>请搜索...</text>
+	</view>
+</navigator>	
+	<view class='xun_view'>
+		<image class='xun_img' src='../../images/icon_xunyiwenzhen.png'></image>
+		<view class='xun_textview'>
+			<text class='xun_text1'>寻医问诊</text>
+			<text class='xun_text2'>这里有最权威的医疗专家为您答疑</text>
+		</view>
+		<image class='jt_img' src='../../images/icon_jt.png'></image>
+	</view>
+
+	<view class='buttons_view'>
+		<navigator url="/pages/live/live" hover-class="navigator-hover">
+		<view class='button_view'>
+			<image class='button_img' src='../../images/icon_live.png'></image>
+			<text class='button_text'>名医直播</text>
+		</view>
+		</navigator>
+		<navigator url="/pages/video/video" hover-class="navigator-hover">
+		<view class='button_view'>
+			<image class='button_img' src='../../images/icon_video.png'></image>
+			<text class='button_text'>医学视频</text>
+		</view>
+		</navigator>
+		<navigator url="/pages/article/article" hover-class="navigator-hover">
+			<view class='button_view'>
+				<image class='button_img' src='../../images/icon_article.png'></image>
+				<text class='button_text'>科普文章</text>
+			</view>
+		</navigator>
+		
+	</view>
+
+	<view class='bar'></view>
+
+	<view class='swiper_view'>
+	<swiper autoplay='false' interval='3000' duration='1000'>
+    <block>
+			<swiper-item>
+				<image src="http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg" class="slide_img"/>
+			</swiper-item>
+		</block>
+
+		<block>
+			<swiper-item>
+				<view style='background-color:#567894;width:678rpx;height:204rpx'></view>
+			</swiper-item>
+		</block>
+  </swiper>
+	</view>
+</view>
+
+<view >
+    <scroll-view scroll-x="true" class="tab-h" scroll-left="{{scrollLeft}}">
+        <view class="tab-item {{currentTab==0?'active':''}}"  data-current="0" bindtap="swichNav">人气直播</view>
+        <view class="tab-item {{currentTab==1?'active':''}}" data-current="1" bindtap="swichNav">热门视频</view>
+        <view class="tab-item {{currentTab==2?'active':''}}" data-current="2" bindtap="swichNav">精选文章</view>
+    </scroll-view>
+		<view class='bar4'></view>
+    <swiper class="tab-content" current="{{currentTab}}" duration="300" bindchange="switchTab"
+     style="height:{{winHeight}}rpx">
+        <swiper-item catchtouchmove="stopTouchMove">
+					<scroll-view scroll-y="true" class="scoll-h" >
+            <view class='live_view'>
+							<view class='live_img'></view>
+							<view class='live_titleview'>
+								<text class='live_titletext'>国家医保局阿扎</text>
+							</view>
+							<view class='live_authorview'>
+								<text class='live_authortext'>上海市第一人民医院  骨科  王小明</text>
+							</view>
+							<view class='bar2'></view>
+						</view>
+
+						<view class='live_view'>				
+							<view class='live_img'></view>
+							<view class='live_titleview'>
+								<text class='live_titletext'>国家医保局阿扎</text>
+							</view>
+							<view class='live_authorview'>
+								<text class='live_authortext'>上海市第一人民医院  骨科  王小明</text>
+							</view>
+							<view class='bar2'></view>
+						</view>
+
+						<view class='live_view'>				
+							<view class='live_img'></view>
+							<view class='live_titleview'>
+								<text class='live_titletext'>国家医保局阿扎</text>
+							</view>
+							<view class='live_authorview'>
+								<text class='live_authortext'>上海市第一人民医院  骨科  王小明</text>
+							</view>
+							<view class='bar2'></view>
+						</view>
+					</scroll-view>	
+        </swiper-item>
+
+				<swiper-item catchtouchmove="stopTouchMove">
+            <view class='videos_view'>
+
+							<view class='video_view'>
+								<view class='video_img'></view>
+								<view class='video_titleview'>
+									<text class='video_titletext'>国家医保局阿扎胞苷等国家医保局阿扎胞苷等</text>
+								</view>
+							</view>
+
+							<view class='video_view'>
+								<view class='video_img'></view>
+								<view class='video_titleview'>
+									<text class='video_titletext'>国家医保局阿扎胞苷等国家医保局阿扎胞苷等</text>
+								</view>
+							</view>
+
+							<view class='video_view'>
+								<view class='video_img'></view>
+								<view class='video_titleview'>
+									<text class='video_titletext'>国家医保局阿扎胞苷等国家医保局阿扎胞苷等</text>
+								</view>
+							</view>
+
+
+						</view>
+						
+        </swiper-item>
+
+				<swiper-item catchtouchmove="stopTouchMove">
+					<block wx:if="{{props.ArticleStore.total>0}}">
+						<navigator wx:for="{{ props.ArticleStore.articleList }}" wx:key="{{ item.id }}" url="../article/articleDetail?linkurl={{item.linkurl}}" >
+						<view class='article_view'>
+								<view class='article_contentview'>
+									<image src="{{ item.fileset[0].filepath+'?scaleType=3' }}" class='article_img'/> 
+									<view class='article_textview'>
+										<view class='article_titleview'>
+											<text class='article_titletext'>{{ item.title }}</text>
+										</view>
+
+										<view class='article_authorview'>
+											<text class='article_authortext'>{{ item.authorname }} {{ item.publishdateStr }}</text>
+										</view>
+									</view>
+								</view> 
+								<view class='bar3'></view>
+						</view>
+						</navigator>
+					</block>
+					<block wx:else>
+						<view class='none_view'>
+							<text class='none_text'>暂无数据</text>
+						</view>
+					</block>
+					
+        </swiper-item>
+    </swiper>
+</view>

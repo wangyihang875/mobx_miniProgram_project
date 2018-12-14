@@ -1,0 +1,50 @@
+<!--pages/article/article.wxml-->
+		<view class='bar'></view>
+    <scroll-view scroll-x="true" class="tab-h" scroll-left="{{scrollLeft}}">
+        <view class="tab-item {{currentTab==0?'active':''}}"  data-current="0" bindtap="swichNav">健康理疗</view>
+        <view class="tab-item {{currentTab==1?'active':''}}" data-current="1" bindtap="swichNav">医学前沿</view>
+        <view class="tab-item {{currentTab==2?'active':''}}" data-current="2" bindtap="swichNav">专业科普</view>
+				<view class="tab-item {{currentTab==3?'active':''}}" data-current="3" bindtap="swichNav">医疗地图</view>
+    </scroll-view>
+		
+    <swiper class="tab-content" current="{{currentTab}}" duration="300" bindchange="switchTab"
+     style="height:{{winHeight}}rpx">
+				<view wx:for="{{[1, 2, 3, 4]}}" wx:for-item="i" wx:key="i">
+				<swiper-item catchtouchmove="stopTouchMove">
+					<scroll-view scroll-y="true" class="scoll-h" bindscrolltolower="loadMorePage">
+					<block wx:if="{{props.ArticleStore.total>0}}">
+					<navigator wx:for="{{ props.ArticleStore.articleList }}" wx:key="{{ item.id }}" url="./articleDetail?linkurl={{item.linkurl}}" >
+            <view class='article_view'>
+					 		<view class='article_contentview'>
+								<image src="{{ item.fileset[0].filepath+'?scaleType=3' }}" class='article_img'/> 
+						 		<view class='article_textview'>
+									<view class='article_titleview'>
+										<text class='article_titletext'>{{ item.title }}</text>
+									</view>
+
+									<view class='article_authorview'>
+										<text class='article_authortext'>{{ item.authorname }} {{ item.publishdateStr }}</text>
+									</view>
+						  	</view>
+					 		</view> 
+							 <view class='bar3'></view>
+					 </view>
+					 </navigator>
+					 <view class='loadMore'  wx:if="{{props.ArticleStore.hasMore}}">
+						<view>继续向上滑动加载更多内容</view>
+					 </view>
+					 <view class='loadMore'  wx:if="{{!props.ArticleStore.hasMore}}">
+						<view>这是我的底线</view>
+					 </view>
+					 </block>
+					 <block wx:else>
+						<view class='none_view'>
+							<text class='none_text'>暂无数据</text>
+						</view>
+					 </block>
+					</scroll-view>	
+        </swiper-item>
+				</view>
+        
+
+    </swiper>

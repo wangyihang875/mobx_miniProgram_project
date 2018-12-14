@@ -1,0 +1,72 @@
+/* pages/mine/mine.wxss */
+.container {
+ display: flex;
+ flex-direction: column;
+ align-items: center 
+} 
+
+.topblock_view{
+	width: 100%;
+	height: 254rpx;
+	background-color: #2EB6AA;
+	display: flex;
+  flex-direction: column;
+	align-items: center;
+}
+
+.headimg_view{
+	width: 120rpx;
+	height: 120rpx;
+	border-radius: 60rpx;
+	background-color: #666;
+	margin-top: 40rpx;
+}
+
+.name_text{
+	font-family: PingFangSC-Medium;
+	font-size: 32rpx;
+	color: #FFFFFF;
+	letter-spacing: 0.44rpx;
+	margin-top: 20rpx;
+}
+
+.btn_contentview{
+	height: 106rpx;
+	width: 100%;
+}
+
+.btn_view{
+	height: 106rpx;
+	
+	margin-left: 36rpx;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+}
+
+.btn_img{
+	width: 34rpx;
+	height: 34rpx;
+}
+
+.btn_text{
+	font-family: PingFangSC-Regular;
+	font-size: 30rpx;
+	color: #333333;
+	letter-spacing: 0.2rpx;
+	margin-left: 22rpx
+}
+
+.jt_img{
+	position: absolute;
+	right: 36rpx;
+	width: 10rpx;
+	height: 20rpx;
+}
+
+.bar{
+	width: 100%;
+	height: 3rpx;
+	background-color: #F6F6F6;
+	margin-left: 36rpx;
+}

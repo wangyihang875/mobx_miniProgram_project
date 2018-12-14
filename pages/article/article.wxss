@@ -1,0 +1,146 @@
+/* pages/article/article.wxss */
+.bar{
+	width:100%;
+	height: 6rpx;
+	background-color: #F9F9F9;
+}
+
+.scoll-h{
+	height: 100%;
+}
+
+.tab-h{
+	height: 80rpx;
+	width: 100%; 
+	box-sizing: border-box;
+	overflow: hidden;
+	line-height: 80rpx;
+	background: #ffffff; 
+	font-size: 32rpx; 
+	white-space: nowrap;
+}
+
+.tab-item{
+	margin:0 30rpx;
+	display: inline-block;
+	font-family: PingFangSC-Regular;
+	font-size: 32rpx;
+	color: #62697D;
+	letter-spacing: 0.09px;
+}
+
+.tab-item.active{
+	color: #2EB6AA;
+	position: relative;
+}
+
+.tab-item.active:after{
+	content: "";
+	display: block;
+	height: 8rpx;
+	width: 52rpx;
+	background: #2EB6AA;
+	position: absolute;
+	bottom: 0;
+	left: 38rpx;
+	border-radius: 16rpx;
+}
+
+.tab-content{
+	margin-top: 28rpx;
+}
+
+.article_view{
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	align-items: center;
+	/* background-color: #eee; */
+}
+
+.article_contentview{
+	display: flex;
+	height: 220rpx;
+	width: 668rpx;
+	/* background-color: #ddd; */
+	align-items: center;
+}
+
+.bar3{
+	width: 668rpx;
+	height: 3rpx;
+	background-color: #F6F6F6;
+}
+
+.article_img{
+	width:200rpx;
+	height:150rpx;
+	/* background-color: #999; */
+}
+
+.article_textview{
+	height: 150rpx;
+	width: 436rpx;
+	/* background-color: #999; */
+	margin-left: 36rpx;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between
+}
+
+.article_titleview{
+
+}
+
+.article_authorview{
+	display: flex;
+	height: 46rpx;
+	align-items: center;
+	/* background-color: #666 */
+}
+
+.article_titletext{
+	font-family: PingFangSC-Regular;
+	line-height: 46rpx;
+	font-size: 32rpx;
+	color: #333333;
+	letter-spacing: 0;
+	display: block;
+	height: 92rpx;
+	overflow: hidden;
+	white-space: pre-wrap;
+	text-overflow:ellipsis;
+}
+
+.article_authortext{
+	font-family: PingFangSC-Regular;
+	font-size: 24rpx;
+	color: #A8AAB0;
+	letter-spacing: 0;
+	display: block;
+	overflow: hidden;
+	white-space: pre-wrap;
+	text-overflow:ellipsis;
+}
+
+.loadMore{
+	width: 65%;
+  margin: 1.5em auto;
+  line-height: 1.6em;
+  font-size: 14px;
+  text-align: center;
+}
+
+.none_view{
+	display: flex;
+	width: 100%;
+	align-items: center;
+	justify-content: center
+}
+
+.none_text{
+	font-family: PingFangSC-Regular;
+	font-size: 30rpx;
+	color: #757A85;
+	letter-spacing: 0.14rpx;
+}

@@ -1,0 +1,32 @@
+<!--pages/live/live.wxml-->
+<view class='live_view'>
+	<view class='live_img'></view>
+	<view class='live_titleview'>
+		<text class='live_titletext'>国家医保局阿扎</text>
+	</view>
+	<view class='bar'></view>
+</view>
+
+<view class='live_view'>
+	<view class='live_img'></view>
+	<view class='live_titleview'>
+		<text class='live_titletext'>国家医保局阿扎</text>
+	</view>
+	<view class='bar'></view>
+</view>
+
+<view class='live_view'>
+	<view class='live_img'></view>
+	<view class='live_titleview'>
+		<text class='live_titletext'>国家医保局阿扎</text>
+	</view>
+	<view class='bar'></view>
+</view>
+
+<view class='live_view'>
+	<view class='live_img'></view>
+	<view class='live_titleview'>
+		<text class='live_titletext'>国家医保局阿扎</text>
+	</view>
+	<view class='bar'></view>
+</view>
