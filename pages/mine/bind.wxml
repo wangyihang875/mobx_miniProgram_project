@@ -1,0 +1,25 @@
+<!--pages/mine/bind.wxml-->
+<view class='container'>
+	<view class='itemView' style='border-bottom-color: {{phonecolor}}'>
+		<text class='titleText' bindtap='phonetextHandle'>请输入手机号</text>
+		<input class='input' value='{{phone}}' focus="{{phoneFocus}}" type='number' maxlength='11' bindfocus='phonefocushandle' bindblur='phoneblurhandle' bindinput="bindPhoneInput"/>
+	</view>
+	<view class='itemView' style='margin-top:44rpx;border-bottom-color: {{yzmcolor}}'>
+		<text class='titleText' bindtap='yzmtextHandle'>请输入验证码</text>
+		<view class='inputView'>
+			<input class='input' type='number' focus="{{yzmFocus}}" bindfocus='yzmfocushandle' bindblur='yzmblurhandle' bindinput="bindYzmInput"/>
+			<view bindtap='getYzmHandle'>
+				<block wx:if="{{props.UserStore.yzmEnable}}">
+					<text class='yzm' >{{props.UserStore.yzmText}}</text>
+				</block>
+				<block wx:else>
+					<text class='yzm' style='color:#666'>{{props.UserStore.yzmText}}</text>
+				</block>
+			</view>
+		</view>
+	</view>
+
+	<button class='btnView' bindtap="submitHandle" hover-class="button-hover">
+		<text class='btnText'>确定</text>
+	</button>
+</view>

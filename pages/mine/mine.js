@@ -1,66 +1,125 @@
-// pages/mine/mine.js
-Page({
+var observer = require('../../assist/lib/observer').observer;
+import { DYSERVER } from '../../config/Config';
+var app = getApp();
+Page(observer({
+	props: {
+		UserStore: require('../../stores/UserStore').default,
+	},
+  
+	data: {
+		userInfo: {},
+		hasUserInfo: false,
+		phoneNum:''
+	},
 
-  /**
-   * 页面的初始数据
-   */
-  data: {
+	onLoad: function () {
+		
+	},
 
-  },
+	onShow :function() {
+		if (app.globalData.userInfo) {
+			this.setData({
+				userInfo: app.globalData.userInfo,
+				hasUserInfo: true,
+				phoneNum: app.globalData.userInfo.phoneNum,
+			})
+		}
+	},
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
+	bindHandle: function () {
+		if (!(app.globalData.userInfo && app.globalData.userInfo.openid)) {
+			wx.showToast({
+				title: '请先登录',
+				image: '../../images/icon_gantanhao.png',
+				icon: 'success',
+				duration: 2000
+			})
+			return;
+		}
 
-  },
+		wx.navigateTo({
+			url: './bind'
+		})
+	},
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
 
-  },
+	logoutHandle: function(){
+		// if (app.globalData.userInfo==null || app.globalData.openid==''){
+		// 	return;
+		// }
+		this.setData({
+			userInfo: null,
+			hasUserInfo: false,
+			phoneNum: ''
+		})
+		
+		this.props.UserStore.logoutWxcxxUpdate()
+			.then(() => {
+				if (this.props.UserStore.status !== '0000') {
+					wx.showToast({
+						title: this.props.UserStore.errorMsg,
+						image: '../../images/icon_gantanhao.png',
+						icon: 'success',
+						duration: 2000
+					})
+					return
+				}
+				
+			})
+			.catch((err) => {
+				wx.showToast({
+					title: '获取接口失败',
+					image: '../../images/icon_gantanhao.png',
+					icon: 'success',
+					duration: 2000
+				})
+			})
+	},
 
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
+	loginHandle: function (e) {
+		app.globalData.userInfo = e.detail.userInfo;
+		wx.setStorageSync('userInfo', e.detail.userInfo);
+		let that = this;
+		wx.login({
+			success: function (loginRes) {
 
-  },
+				that.props.UserStore.getWxXcxSession(loginRes.code,e.detail.userInfo)
+					.then(() => {
+						if (that.props.UserStore.status !== '0000') {
+							wx.showToast({
+								title: "登录失败",
+								image: '../../images/icon_gantanhao.png',
+								icon: 'success',
+								duration: 2000
+							})
+							return
+						}
 
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
+						that.setData({
+							userInfo: e.detail.userInfo,
+							hasUserInfo: true,
+							phoneNum: app.globalData.userInfo.phoneNum
+						})
 
-  },
+					})
+					.catch((err) => {
+						wx.showToast({
+							title: '获取接口失败',
+							image: '../../images/icon_gantanhao.png',
+							icon: 'success',
+							duration: 2000
+						})
+					})
 
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
+			},
+			fail: function (loginErr) {
+				console.log("loginErr=" + loginErr)
+			}
+		})
 
-  },
+		
 
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
+		
+	}
 
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  }
-})
+}))

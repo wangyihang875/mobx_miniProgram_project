@@ -1,0 +1,10 @@
+{
+	"navigationBarBackgroundColor": "#ffffff",
+	"navigationBarTextStyle": "black",
+	"navigationBarTitleText": "名医课堂",
+	"backgroundColor": "#eeeeee",
+	"backgroundTextStyle": "light",
+	"usingComponents": {
+		"txv-video": "plugin://tencentVideo/video"
+	}
+}

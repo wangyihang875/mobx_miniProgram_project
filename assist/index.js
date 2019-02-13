@@ -19,7 +19,7 @@ var app = {
     page: page,
 }
 
-function request(url,data,options) {
+function request(url, data, options) {
     return new Promise(function (resolve, reject) {
         wx.showNavigationBarLoading()
 
@@ -37,7 +37,7 @@ function request(url,data,options) {
         }
         var args = {
             url: url,
-					header: { 'Accept': 'application/json', 'Content-Type': 'application/json', 'token': 'FnureEYnavbeGhlUVnyfww==' },
+						header: { 'Accept': 'application/json', 'Content-Type': 'application/json', 'token': 'FnureEYnavbeGhlUVnyfww==' },
             success: success,
             fail: reject,
             complete:complete,
@@ -53,6 +53,8 @@ function request(url,data,options) {
     })
 }
 
+
 app["request"] = request
+
 
 module.exports = app

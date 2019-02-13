@@ -1,1 +1,7 @@
-{}
+{
+	"navigationBarBackgroundColor": "#ffffff",
+	"navigationBarTextStyle": "black",
+	"navigationBarTitleText": "寻医问诊",
+	"backgroundColor": "#eeeeee",
+	"backgroundTextStyle": "light"
+}

@@ -3,7 +3,10 @@ var observer = require('../../assist/lib/observer').observer;
 var app = getApp();
 Page(observer({
 	props: {
+		VideoStore: require('../../stores/VideoStore').default,
 		ArticleStore: require('../../stores/ArticleStore').default,
+		RecordStore: require('../../stores/RecordStore').default,
+		UserStore: require('../../stores/UserStore').default,
 	},
   /**
    * 页面的初始数据
@@ -24,15 +27,61 @@ Page(observer({
 		this.checkCor();
 
 		if (e.detail.current == 0) {
-			
+			this.props.RecordStore.recordList = [];
+			this.props.RecordStore.zhiboListOfXcxMainPage()
+				.then(() => {
+					if (this.props.RecordStore.status !== '0000') {
+						wx.showToast({
+							title: this.props.RecordStore.errorMsg,
+							image: '../../images/icon_gantanhao.png',
+							icon: 'success',
+							duration: 2000
+						})
+						return
+					}
+					let winHeight = 498 * this.props.RecordStore.total;
+					this.setData({
+						winHeight: winHeight
+					});
+				})
+				.catch((err) => {
+					wx.showToast({
+						title: '获取接口失败',
+						image: '../../images/icon_gantanhao.png',
+						icon: 'success',
+						duration: 2000
+					})
+				})
 
 		} else if (e.detail.current == 1) {
-			
+			this.props.VideoStore.videoList = [];
+			this.props.VideoStore.shortVideoListOfXcxMainPage()
+				.then(() => {
+					if (this.props.VideoStore.status !== '0000') {
+						wx.showToast({
+							title: this.props.VideoStore.errorMsg,
+							image: '../../images/icon_gantanhao.png',
+							icon: 'success',
+							duration: 2000
+						})
+						return
+					}
+					let winHeight = 430 * Math.ceil(this.props.VideoStore.total / 2);
+					this.setData({
+						winHeight: winHeight
+					});
+				})
+				.catch((err) => {
+					wx.showToast({
+						title: '获取接口失败',
+						image: '../../images/icon_gantanhao.png',
+						icon: 'success',
+						duration: 2000
+					})
+				})
 		} else if (e.detail.current == 2) {
 			this.props.ArticleStore.articleList=[];
-			this.props.ArticleStore.currentPage=1;
-			this.props.ArticleStore.count=20;
-			this.props.ArticleStore.getArticleList('热点')
+			this.props.ArticleStore.articleListOfXcxMainPage()
 				.then(() => {
 					if (this.props.ArticleStore.status !== '0000') {
 						
@@ -48,7 +97,6 @@ Page(observer({
 					this.setData({
 						winHeight: winHeight
 					});
-					console.log(`winHeight=${winHeight}`)
 				})
 				.catch((err) => {
 					wx.showToast({
@@ -95,21 +143,50 @@ Page(observer({
 		}
 	},
 	onLoad: function () {
-		// var that = this;
-		// wx.getSystemInfo({
-		// 	success: function (res) {
-		// 		var clientHeight = res.windowHeight,
-		// 			clientWidth = res.windowWidth,
-		// 			rpxR = 750 / clientWidth;
-		// 		var calc = clientHeight * rpxR - 180;
-		// 		that.setData({
-		// 			winHeight: calc
-		// 		});
-		// 		console.log(`winHeight=${calc}`)
-		// 	}
-		// });
+		this.props.RecordStore.recordList = [];
+		this.props.RecordStore.zhiboListOfXcxMainPage()
+			.then(() => {
+				if (this.props.RecordStore.status !== '0000') {
+					wx.showToast({
+						title: this.props.RecordStore.errorMsg,
+						image: '../../images/icon_gantanhao.png',
+						icon: 'success',
+						duration: 2000
+					})
+					//return
+				}
+				let winHeight = this.props.RecordStore.total==0 ? 298 : this.props.RecordStore.total*498 ;
+				this.setData({
+					winHeight: winHeight
+				});
+
+
+				this.props.UserStore.getWxxcxAdsList()
+				.then(() => {
+					
+				})
+				.catch((err) => {
+				})
+
+
+			})
+			.catch((err) => {
+				wx.showToast({
+					title: '获取接口失败',
+					image: '../../images/icon_gantanhao.png',
+					icon: 'success',
+					duration: 2000
+				})
+			})
+		
 	},
 	footerTap: app.footerTap,
+
+	xywzHandle:function(){
+		wx.switchTab({
+			url: '/pages/question/question'
+		})
+	},
 
 	stopTouchMove: function () {
 		return false;

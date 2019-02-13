@@ -22,13 +22,13 @@ Page(observer({
 		this.checkCor();
 
 		if (e.detail.current==0){
-			this.props.ArticleStore.currentTab = '疾病';
+			this.props.ArticleStore.currentTab = '最新';
 		} else if (e.detail.current == 1){
 			this.props.ArticleStore.currentTab = '前沿';
 		} else if (e.detail.current == 2) {
-			this.props.ArticleStore.currentTab = '科普';
+			this.props.ArticleStore.currentTab = '疾病';
 		} else if (e.detail.current == 3) {
-			this.props.ArticleStore.currentTab = '地图';
+			this.props.ArticleStore.currentTab = '科普';
 		}
 		this.props.ArticleStore.currentPage=1;
 		this.props.ArticleStore.count= 10;
@@ -101,7 +101,7 @@ Page(observer({
 		this.props.ArticleStore.articleList = [];
 		this.props.ArticleStore.totalPage = 0;
 		this.props.ArticleStore.hasMore = false;
-		this.props.ArticleStore.getArticleList(this.props.ArticleStore.currentTab)
+		this.props.ArticleStore.getArticleList('疾病')
 			.then(() => {
 				if (this.props.ArticleStore.status !== '0000') {
 					wx.showToast({

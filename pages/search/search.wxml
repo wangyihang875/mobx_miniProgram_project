@@ -1,27 +1,27 @@
 <!--pages/search/search.wxml-->
 <view class='container'>
+<view class='searchView'>
 	<view class='searchbar'>
-		<image class='search_img' src='../../images/icon_fangdajing.png' />
-		<input placeholder="请输入搜索内容..."
-		placeholder-class='placeholdertext' focus=true
-		/>
+			<image class='search_img' src='../../images/icon_fangdajing.png' />
+			<input class='search_input' value="{{props.SearchStore.searchStr}}" placeholder="请输入搜索内容..." placeholder-class='placeholdertext' focus='true' bindinput='bindSearchInput' />
 	</view>
+	<view class='searchBtn' bindtap='searchHandle' hover-class='searchBtn-hover'><text class='searchBtnText'>搜索</text></view>
+</view>
+	
 
 	<view class='label_view'><text class='label_text'>热门搜索</text></view>
 	<view class='keywords_view'>
-		<view class='word_view'><text class='word_text'>中国医学管理奖</text></view>
-		<view class='word_view'><text class='word_text'>中国医学</text></view>
-		<view class='word_view'><text class='word_text'>管理奖</text></view>
-		<view class='word_view'><text class='word_text'>医学</text></view>
+		<navigator wx:for="{{ props.SearchStore.hotList }}" wx:key="{{ item.searchStr }}" hover-class="none" url="./searchPage?searchStr={{item.searchStr}}">
+			<view class='word_view'><text class='word_text'>{{item.searchStr}}</text></view>
+		</navigator>
 	</view>
 	<view class='his_view'>
 		<view class='label_view'><text class='label_text'>搜索历史</text></view>
-		<image class='delete_img' src='../../images/icon_lajitong.png' />
+		<view bindtap='deleteSearchHandle'><image class='delete_img' src='../../images/icon_lajitong.png' /></view>
 	</view>
 	<view class='keywords_view'>
-		<view class='word_view'><text class='word_text'>中国医学管理奖</text></view>
-		<view class='word_view'><text class='word_text'>中国医学管理奖</text></view>
-		<view class='word_view'><text class='word_text'>中国医学管理奖</text></view>
-		<view class='word_view'><text class='word_text'>中国医学管理奖</text></view>
+		<navigator wx:for="{{ searchHis }}" wx:key="{{ item }}" hover-class="none" url="./searchPage?searchStr={{item}}">
+		<view class='word_view'><text class='word_text'>{{ item }}</text></view>
+		</navigator>
 	</view>
 </view>

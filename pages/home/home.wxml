@@ -7,7 +7,7 @@
 		<text class='placeholdertext'>请搜索...</text>
 	</view>
 </navigator>	
-	<view class='xun_view'>
+	<view class='xun_view' bindtap='xywzHandle'>
 		<image class='xun_img' src='../../images/icon_xunyiwenzhen.png'></image>
 		<view class='xun_textview'>
 			<text class='xun_text1'>寻医问诊</text>
@@ -17,10 +17,10 @@
 	</view>
 
 	<view class='buttons_view'>
-		<navigator url="/pages/live/live" hover-class="navigator-hover">
+		<navigator url="/pages/record/record" hover-class="navigator-hover">
 		<view class='button_view'>
 			<image class='button_img' src='../../images/icon_live.png'></image>
-			<text class='button_text'>名医直播</text>
+			<text class='button_text'>医学前沿</text>
 		</view>
 		</navigator>
 		<navigator url="/pages/video/video" hover-class="navigator-hover">
@@ -41,123 +41,139 @@
 	<view class='bar'></view>
 
 	<view class='swiper_view'>
-	<swiper autoplay='false' interval='3000' duration='1000'>
-    <block>
-			<swiper-item>
-				<image src="http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg" class="slide_img"/>
-			</swiper-item>
-		</block>
+	<swiper indicator-dots='true' autoplay='false' interval='3000' duration='1000'>
 
-		<block>
+    <block wx:for="{{ props.UserStore.adsList }}" wx:key="{{ item.id }}">
 			<swiper-item>
-				<view style='background-color:#567894;width:678rpx;height:204rpx'></view>
+				<block wx:if="{{item.linktype==1}}" >
+				<navigator hover-class='none' url="/pages/article/articleDetail?linkurl={{item.updpgmid}}">
+					<image src="{{item.picurl}}" class="slide_img"/>
+				</navigator>
+				</block>
+
+				<block wx:if="{{item.linktype==2}}">
+				<navigator hover-class='none' url="/pages/video/videoDetail?videono={{item.articleid}}">
+					<image src="{{item.picurl}}" class="slide_img"/>
+				</navigator>
+				</block>
+
+				<block wx:if="{{item.linktype==3}}">
+				<navigator hover-class='none' url="/pages/record/recordDetail?zhibono={{item.articleid}}">
+					<image src="{{item.picurl}}" class="slide_img"/>
+				</navigator>
+				</block>
+
+				<block wx:if="{{item.linktype==0}}">
+					<image src="{{item.picurl}}" class="slide_img"/>
+				</block>
 			</swiper-item>
 		</block>
+	
   </swiper>
 	</view>
 </view>
 
-<view >
-    <scroll-view scroll-x="true" class="tab-h" scroll-left="{{scrollLeft}}">
-        <view class="tab-item {{currentTab==0?'active':''}}"  data-current="0" bindtap="swichNav">人气直播</view>
-        <view class="tab-item {{currentTab==1?'active':''}}" data-current="1" bindtap="swichNav">热门视频</view>
-        <view class="tab-item {{currentTab==2?'active':''}}" data-current="2" bindtap="swichNav">精选文章</view>
-    </scroll-view>
-		<view class='bar4'></view>
-    <swiper class="tab-content" current="{{currentTab}}" duration="300" bindchange="switchTab"
-     style="height:{{winHeight}}rpx">
-        <swiper-item catchtouchmove="stopTouchMove">
-					<scroll-view scroll-y="true" class="scoll-h" >
-            <view class='live_view'>
-							<view class='live_img'></view>
-							<view class='live_titleview'>
-								<text class='live_titletext'>国家医保局阿扎</text>
-							</view>
-							<view class='live_authorview'>
-								<text class='live_authortext'>上海市第一人民医院  骨科  王小明</text>
-							</view>
-							<view class='bar2'></view>
+
+<scroll-view scroll-x="true" class="tab-h" scroll-left="{{scrollLeft}}">
+	<view class="tab-item {{currentTab==0?'active':''}}"  data-current="0" bindtap="swichNav">精选会议</view>
+	<view class="tab-item {{currentTab==1?'active':''}}" data-current="1" bindtap="swichNav">热门视频</view>
+	<view class="tab-item {{currentTab==2?'active':''}}" data-current="2" bindtap="swichNav">精选文章</view>
+</scroll-view>
+<view class='bar4'></view>
+<swiper class="tab-content" current="{{currentTab}}" duration="300" bindchange="switchTab"
+	style="height:{{winHeight}}rpx">
+		<swiper-item>
+		<block wx:if="{{props.RecordStore.total>0}}">
+			<navigator wx:for="{{ props.RecordStore.recordList }}" wx:key="{{ item.id }}" url="/pages/record/recordDetail?zhibono={{item.zhibono}}" hover-class='none'>
+
+				<view class='live_view'>
+					<image src="{{item.picurl}}" class='live_img'/>
+					<view class='live_titleview'>
+						<text class='live_titletext'>{{item.title}}</text>
+					</view>
+					<view class='live_authorview'>
+						<text class='live_authortext'>{{item.stitle}}</text>
+					</view>
+					<view class='bar2'></view>
+				</view>
+			</navigator>
+			</block>
+			<block wx:else>
+				<view class='none_view'>
+							<block wx:if="{{props.RecordStore.isLoading}}">
+								<text class='none_text'>加载中...</text>
+							</block>
+							<block wx:else>
+								<view class='blank_view_home'>
+									<image class='none_img_v' src='../../images/icon_novideo.png'/>
+									<text class='none_text'>很抱歉，暂时没有视频内容~</text>
+								</view>
+							</block>
 						</view>
+			</block>
+		</swiper-item>
 
-						<view class='live_view'>				
-							<view class='live_img'></view>
-							<view class='live_titleview'>
-								<text class='live_titletext'>国家医保局阿扎</text>
-							</view>
-							<view class='live_authorview'>
-								<text class='live_authortext'>上海市第一人民医院  骨科  王小明</text>
-							</view>
-							<view class='bar2'></view>
+		<swiper-item>
+		<view class='videos_view'>
+		<block wx:if="{{props.VideoStore.total>0}}">
+		<navigator wx:for="{{ props.VideoStore.videoList }}" wx:key="{{ item.id }}" url="/pages/video/videoDetail?videono={{item.videono}}" hover-class='none'>
+			<view class='video_view'>
+				<image src="{{item.picurl}}" class='video_img'/>
+				<view class='video_titleview'>
+					<text class='video_titletext'>{{item.title}}</text>
+				</view>
+			</view>
+		</navigator>
+		</block>
+		<block wx:else>
+			<view class='none_view'>
+								<block wx:if="{{props.VideoStore.isLoading}}">
+								<text class='none_text'>加载中...</text>
+							</block>
+							<block wx:else>
+								<view class='blank_view_home'>
+									<image class='none_img_v' src='../../images/icon_novideo.png'/>
+									<text class='none_text'>很抱歉，暂时没有视频内容~</text>
+								</view>
+							</block>
 						</view>
+		</block>
+		</view>
+		</swiper-item>
 
-						<view class='live_view'>				
-							<view class='live_img'></view>
-							<view class='live_titleview'>
-								<text class='live_titletext'>国家医保局阿扎</text>
-							</view>
-							<view class='live_authorview'>
-								<text class='live_authortext'>上海市第一人民医院  骨科  王小明</text>
-							</view>
-							<view class='bar2'></view>
-						</view>
-					</scroll-view>	
-        </swiper-item>
+		<swiper-item>
+			<block wx:if="{{props.ArticleStore.total>0}}">
+				<navigator wx:for="{{ props.ArticleStore.articleList }}" wx:key="{{ item.id }}" url="/pages/article/articleDetail?linkurl={{item.linkurl}}" hover-class='none'>
+				<view class='article_view'>
+						<view class='article_contentview'>
+							<image src="{{ item.fileset[0].filepath+'?scaleType=3' }}" class='article_img'/> 
+							<view class='article_textview'>
+								<view class='article_titleview'>
+									<text class='article_titletext'>{{ item.title }}</text>
+								</view>
 
-				<swiper-item catchtouchmove="stopTouchMove">
-            <view class='videos_view'>
-
-							<view class='video_view'>
-								<view class='video_img'></view>
-								<view class='video_titleview'>
-									<text class='video_titletext'>国家医保局阿扎胞苷等国家医保局阿扎胞苷等</text>
+								<view class='article_authorview'>
+									<text class='article_authortext'>{{ item.authorname }} {{ item.publishdateStr }}</text>
 								</view>
 							</view>
-
-							<view class='video_view'>
-								<view class='video_img'></view>
-								<view class='video_titleview'>
-									<text class='video_titletext'>国家医保局阿扎胞苷等国家医保局阿扎胞苷等</text>
+						</view> 
+						<view class='bar3'></view>
+				</view>
+				</navigator>
+			</block>
+			<block wx:else>
+				<view class='none_view'>
+								<block wx:if="{{props.ArticleStore.isLoading}}">
+								<text class='none_text'>加载中...</text>
+							</block>
+							<block wx:else>
+								<view class='blank_view_home'>
+									<image class='none_img_a' src='../../images/icon_noarticle.png'/>
+									<text class='none_text'>很抱歉，暂时没有文章内容~</text>
 								</view>
-							</view>
-
-							<view class='video_view'>
-								<view class='video_img'></view>
-								<view class='video_titleview'>
-									<text class='video_titletext'>国家医保局阿扎胞苷等国家医保局阿扎胞苷等</text>
-								</view>
-							</view>
-
-
+							</block>
 						</view>
-						
-        </swiper-item>
+			</block>
+		</swiper-item>
+</swiper>
 
-				<swiper-item catchtouchmove="stopTouchMove">
-					<block wx:if="{{props.ArticleStore.total>0}}">
-						<navigator wx:for="{{ props.ArticleStore.articleList }}" wx:key="{{ item.id }}" url="../article/articleDetail?linkurl={{item.linkurl}}" >
-						<view class='article_view'>
-								<view class='article_contentview'>
-									<image src="{{ item.fileset[0].filepath+'?scaleType=3' }}" class='article_img'/> 
-									<view class='article_textview'>
-										<view class='article_titleview'>
-											<text class='article_titletext'>{{ item.title }}</text>
-										</view>
-
-										<view class='article_authorview'>
-											<text class='article_authortext'>{{ item.authorname }} {{ item.publishdateStr }}</text>
-										</view>
-									</view>
-								</view> 
-								<view class='bar3'></view>
-						</view>
-						</navigator>
-					</block>
-					<block wx:else>
-						<view class='none_view'>
-							<text class='none_text'>暂无数据</text>
-						</view>
-					</block>
-					
-        </swiper-item>
-    </swiper>
-</view>

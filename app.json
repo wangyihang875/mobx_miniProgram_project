@@ -1,18 +1,24 @@
 {
   "pages":[
 		"pages/home/home",
+				
+		"pages/test/test",
+		"pages/video/videoDetail",
 		"pages/search/search",
+		"pages/search/searchPage",
+		
+		"pages/mine/mine",
+		"pages/index/index",
 		"pages/article/article",
 		"pages/article/articleDetail",
-
-    "pages/index/index",
     "pages/live/live",
+		"pages/live/liveDetail",
 		"pages/video/video",
-	
     "pages/question/question",
-    "pages/mine/mine",
-    
-    "pages/logs/logs"
+    "pages/mine/bind",
+    "pages/logs/logs",
+		"pages/record/record",
+		"pages/record/recordDetail"
   ],
   "window":{
     "backgroundTextStyle":"light",
@@ -34,16 +40,22 @@
       },
       {
         "pagePath": "pages/question/question",
-        "text": "我的提问",
+        "text": "寻医问诊",
         "iconPath": "images/tab_question.png",
         "selectedIconPath": "images/tab_question_s.png"
       },
       {
         "pagePath": "pages/mine/mine",
-        "text": "个人",
+        "text": "个人中心",
         "iconPath": "images/tab_mine.png",
         "selectedIconPath": "images/tab_mine_s.png"
       }
     ]
-  }
+  },
+	"plugins":{
+		"tencentVideo":{
+			"version":"1.2.4",
+			"provider":"wxa75efa648b60994b"
+		}
+	}
 }

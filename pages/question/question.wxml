@@ -1,2 +1,2 @@
-<!--pages/question/question.wxml-->
-<text>pages/question/question.wxml</text>
+<web-view src="https://zhidao.bushengshi.com/interface/getMainPage?mobilePhone={{phoneNum}}&unionid=&headimgurl={{headimgurl}}&state={{state}}"></web-view>
+

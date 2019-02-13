@@ -1,0 +1,35 @@
+<!--pages/record/record.wxml-->
+
+<scroll-view scroll-y="true" class="scoll-h" bindscrolltolower="loadMorePage">
+<block wx:if="{{props.RecordStore.total>0}}">
+<navigator wx:for="{{ props.RecordStore.recordList }}" wx:key="{{ item.id }}"  url="./recordDetail?zhibono={{item.zhibono}}">
+<view class='record_view'>
+	<image src='{{item.picurl}}' class='record_img'/>
+	<view class='record_titleview'>
+		<text class='record_titletext'>{{item.title}}</text>
+	</view>
+	<view class='bar'></view>
+</view>
+
+</navigator>
+<view class='loadMore'  wx:if="{{props.RecordStore.hasMore}}">
+	<view>继续向上滑动加载更多内容</view>
+</view>
+<view class='loadMore'  wx:if="{{!props.RecordStore.hasMore}}">
+	<view>这是我的底线</view>
+</view>
+</block>
+<block wx:else>
+		<view class='none_view'>
+				<block wx:if="{{props.RecordStore.isLoading}}">
+				<text class='none_text'>加载中...</text>
+			</block>
+			<block wx:else>
+				<view class='blank_view'>
+					<image class='none_img_v' src='../../images/icon_novideo.png'/>
+					<text class='none_text'>很抱歉，暂时没有视频内容~</text>
+				</view>
+			</block>
+		</view>
+	</block>
+</scroll-view>

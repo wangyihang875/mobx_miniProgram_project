@@ -1,0 +1,6 @@
+<!--pages/test/test.wxml-->
+
+<!-- <video class='video'  src='http://edu.cxmed.cn/open/course/9/lesson/10/player'></video> -->
+
+
+<web-view src="http://edu.cxmed.cn/open/course/9/lesson/10/player"></web-view>

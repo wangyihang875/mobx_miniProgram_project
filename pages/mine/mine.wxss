@@ -22,12 +22,23 @@
 	margin-top: 40rpx;
 }
 
+.name_button{
+	font-size: 32rpx;
+	color: #FFFFFF;
+	margin-top: 5rpx;
+	background-color: #2EB6AA;
+}
+
 .name_text{
 	font-family: PingFangSC-Medium;
 	font-size: 32rpx;
 	color: #FFFFFF;
 	letter-spacing: 0.44rpx;
 	margin-top: 20rpx;
+}
+
+button::after{ 
+	border: none;
 }
 
 .btn_contentview{
@@ -57,6 +68,12 @@
 	margin-left: 22rpx
 }
 
+.promopt_text{
+	font-size: 25rpx;
+	color: #ff0000;
+	margin-left: 10rpx
+}
+
 .jt_img{
 	position: absolute;
 	right: 36rpx;
@@ -70,3 +87,7 @@
 	background-color: #F6F6F6;
 	margin-left: 36rpx;
 }
+.view-hover-style{
+	background-color: #EDEDED;
+}
+

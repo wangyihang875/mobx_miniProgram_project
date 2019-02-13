@@ -3,7 +3,7 @@ var observer = require('../../assist/lib/observer').observer;
 var app = getApp();
 Page(observer({
 	props: {
-
+		VideoStore: require('../../stores/VideoStore').default,
 	},
   /**
    * 页面的初始数据
@@ -20,6 +20,43 @@ Page(observer({
 			currentTab: e.detail.current
 		});
 		this.checkCor();
+
+		if (e.detail.current == 0) {
+			this.props.VideoStore.currentTab = '健康食谱';
+		} else if (e.detail.current == 1) {
+			this.props.VideoStore.currentTab = '日常预防';
+		} else if (e.detail.current == 2) {
+			this.props.VideoStore.currentTab = '前沿科普';
+		} else if (e.detail.current == 3) {
+			this.props.VideoStore.currentTab = '名医对话';
+		}
+		this.props.VideoStore.currentPage = 1;
+		this.props.VideoStore.count = 10;
+		this.props.VideoStore.videoList = [];
+		this.props.VideoStore.totalPage = 0;
+		this.props.VideoStore.hasMore = false;
+
+		this.props.VideoStore.getVideoList(this.props.VideoStore.currentTab)
+			.then(() => {
+				if (this.props.VideoStore.status !== '0000') {
+					wx.showToast({
+						title: this.props.VideoStore.errorMsg,
+						image: '../../images/icon_gantanhao.png',
+						icon: 'success',
+						duration: 2000
+					})
+					return
+				}
+			})
+			.catch((err) => {
+				wx.showToast({
+					title: '获取接口失败',
+					image: '../../images/icon_gantanhao.png',
+					icon: 'success',
+					duration: 2000
+				})
+			})
+
 	},
 	// 点击标题切换当前页时改变样式
 	swichNav: function (e) {
@@ -52,17 +89,70 @@ Page(observer({
 					clientWidth = res.windowWidth,
 					rpxR = 750 / clientWidth;
 				var calc = clientHeight * rpxR - 180;
-				console.log(calc)
 				that.setData({
 					winHeight: calc
 				});
 			}
 		});
+
+		
+		this.props.VideoStore.currentPage = 1;
+		this.props.VideoStore.count = 10;
+		this.props.VideoStore.videoList = [];
+		this.props.VideoStore.totalPage = 0;
+		this.props.VideoStore.hasMore = false;
+		this.props.VideoStore.getVideoList('健康食谱')
+			.then(() => {
+				if (this.props.VideoStore.status !== '0000') {
+					wx.showToast({
+						title: this.props.VideoStore.errorMsg,
+						image: '../../images/icon_gantanhao.png',
+						icon: 'success',
+						duration: 2000
+					})
+					return
+				}
+			})
+			.catch((err) => {
+				wx.showToast({
+					title: '获取接口失败',
+					image: '../../images/icon_gantanhao.png',
+					icon: 'success',
+					duration: 2000
+				})
+			})
 	},
 	footerTap: app.footerTap,
 
 	stopTouchMove: function () {
 		return false;
+	},
+
+	loadMorePage() {
+		if (this.props.VideoStore.currentPage >= this.props.VideoStore.totalPage) return
+		this.props.VideoStore.currentPage++
+		this.props.VideoStore.getVideoList(this.props.VideoStore.currentTab)
+			.then(() => {
+				if (this.props.VideoStore.status !== '0000') {
+					wx.showToast({
+						title: this.props.VideoStore.errorMsg,
+						image: '../../images/icon_gantanhao.png',
+						icon: 'success',
+						duration: 2000
+					})
+					return
+				}
+
+			})
+			.catch((err) => {
+				wx.showToast({
+					title: err,
+					image: '../../images/icon_gantanhao.png',
+					icon: 'success',
+					duration: 2000
+				})
+			})
+
 	},
 
 }))

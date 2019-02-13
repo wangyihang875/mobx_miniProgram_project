@@ -1,4 +1,5 @@
 import regeneratorRuntime from '../assist/lib/regenerator-runtime/runtime.js';
+import { DYSERVER } from '../config/Config';
 var extendObservable = require('../assist/lib/mobx').extendObservable;
 var runInAction = require('../assist/lib/mobx').runInAction;
 var app = getApp();
@@ -23,7 +24,8 @@ var ArticleStore = function () {
 
 	this.getArticleList = async (lm) => {
 		try {
-			const resultData = await app.request(`http://fd.bushnegshi.com/interface/articleList301?lm=${lm}&currentPage=${this.currentPage}&count=${this.count}&title=`)
+			this.isLoading = true;
+			const resultData = await app.request(`${DYSERVER}articleList303?lm=${lm}&currentPage=${this.currentPage}&count=${this.count}&title=`)
 			runInAction("update state after getArticleList", () => {
 				this.isLoading = false;
 				this.status = resultData.status;
@@ -35,7 +37,7 @@ var ArticleStore = function () {
 						let totalPage = resultData.data.totalpage;
 						this.articleList = articleList;
 						this.totalPage = totalPage;	
-						this.test = resultData.msg;			
+						//this.test = resultData.msg;
 					}
 					if (this.totalPage > this.currentPage) {
 						this.hasMore = true;
@@ -45,6 +47,32 @@ var ArticleStore = function () {
 					
 				
 					this.errorMsg = '';
+					this.isLoading = false;
+				}
+			});
+		} catch (error) {
+			this.isLoading = false;
+			this.errorMsg = error;
+		}
+	}
+
+	//获取精品文章
+	this.articleListOfXcxMainPage = async () => {
+		try {
+			this.isLoading = true;
+			const resultData = await app.request(`${DYSERVER}articleListOfXcxMainPage`)
+			runInAction("update state after articleListOfXcxMainPage", () => {
+				this.isLoading = false;
+				this.status = resultData.status;
+				if (resultData.status != '0000') {
+					this.errorMsg = resultData.msg;
+				} else {
+					if (resultData.data && resultData.data.length) {
+						this.articleList = resultData.data;
+					}
+					
+					this.errorMsg = '';
+					this.isLoading = false;
 				}
 			});
 		} catch (error) {

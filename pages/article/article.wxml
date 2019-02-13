@@ -1,10 +1,10 @@
-<!--pages/article/article.wxml-->
+
 		<view class='bar'></view>
     <scroll-view scroll-x="true" class="tab-h" scroll-left="{{scrollLeft}}">
-        <view class="tab-item {{currentTab==0?'active':''}}"  data-current="0" bindtap="swichNav">健康理疗</view>
-        <view class="tab-item {{currentTab==1?'active':''}}" data-current="1" bindtap="swichNav">医学前沿</view>
-        <view class="tab-item {{currentTab==2?'active':''}}" data-current="2" bindtap="swichNav">专业科普</view>
-				<view class="tab-item {{currentTab==3?'active':''}}" data-current="3" bindtap="swichNav">医疗地图</view>
+        <view class="tab-item {{currentTab==0?'active':''}}"  data-current="0" bindtap="swichNav">最新文章</view>
+        <view class="tab-item {{currentTab==1?'active':''}}" data-current="1" bindtap="swichNav">前沿知识</view>
+        <view class="tab-item {{currentTab==2?'active':''}}" data-current="2" bindtap="swichNav">疾病防患</view>
+				<view class="tab-item {{currentTab==3?'active':''}}" data-current="3" bindtap="swichNav">健康科普</view>
     </scroll-view>
 		
     <swiper class="tab-content" current="{{currentTab}}" duration="300" bindchange="switchTab"
@@ -39,7 +39,15 @@
 					 </block>
 					 <block wx:else>
 						<view class='none_view'>
-							<text class='none_text'>暂无数据</text>
+								<block wx:if="{{props.ArticleStore.isLoading}}">
+								<text class='none_text'>加载中...</text>
+							</block>
+							<block wx:else>
+								<view class='blank_view'>
+									<image class='none_img_a' src='../../images/icon_noarticle.png'/>
+									<text class='none_text'>很抱歉，暂时没有文章内容~</text>
+								</view>
+							</block>
 						</view>
 					 </block>
 					</scroll-view>	

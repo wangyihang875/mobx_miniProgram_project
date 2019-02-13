@@ -1,34 +1,35 @@
 /* pages/article/article.wxss */
+.videos_view{
+	width: 100%;
+	padding-left: 36rpx;
+	padding-right: 36rpx;
+	display: flex;
+	flex-wrap: wrap
+}
 
 .video_view{
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	height: 452rpx;
-	width: 100%;
-	background-color: #ffffff;
+	width:324rpx;
+	height:388rpx;
+	margin-right: 30rpx;
+	margin-top: 36rpx;
 }
 
 .video_img{
+	width: 324rpx;
 	height: 320rpx;
-	width: 678rpx;
-	background-color: #aaa;
-	margin-top: 36rpx
 }
 
 .video_titleview{
+	width: 324rpx;
+	height: 44rpx;
 	display: flex;
 	align-items: center;
-	height: 44rpx;
-	width: 676rpx;
-	background-color: #999;
 	margin-top: 24rpx;
-	margin-bottom: 32rpx;
 }
 
 .video_titletext{
 	font-family: PingFangSC-Regular;
-	font-size: 32rpx;
+	font-size: 14px;
 	color: #333333;
 	letter-spacing: 0;
 	display: block;
@@ -88,5 +89,13 @@
 
 .tab-content{
 	
+}
+
+.loadMore{
+	width: 65%;
+  margin: 1.5em auto;
+  line-height: 1.6em;
+  font-size: 14px;
+  text-align: center;
 }
 

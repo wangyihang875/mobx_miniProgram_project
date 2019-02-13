@@ -12,8 +12,8 @@
 		"autoAudits": false
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.4.1",
-	"appid": "wx137e98c2e3ad6c47",
+	"libVersion": "2.4.3",
+	"appid": "wxadf7c545d626e862",
 	"projectname": "CXJK",
 	"debugOptions": {
 		"hidedInDevtools": []
@@ -28,13 +28,32 @@
 			"current": -1,
 			"list": []
 		},
+		"plugin": {
+			"current": -1,
+			"list": []
+		},
 		"game": {
 			"currentL": -1,
 			"list": []
 		},
 		"miniprogram": {
-			"current": -1,
-			"list": []
+			"current": 1,
+			"list": [
+				{
+					"id": -1,
+					"name": "xunyiwenzhen",
+					"pathName": "pages/question/question",
+					"query": "state=ARTI00000288",
+					"scene": "1048"
+				},
+				{
+					"id": -1,
+					"name": "xunyiwenzhen2",
+					"pathName": "pages/question/question",
+					"query": "state=ARTI00000287",
+					"scene": "1048"
+				}
+			]
 		}
 	}
 }

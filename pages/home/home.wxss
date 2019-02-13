@@ -111,10 +111,12 @@
 	height: 204rpx;
 	background-color: #666;
 	margin-top: 36rpx;
+	border-radius: 10rpx
 }
 .slide_img{
 	width: 678rpx;
 	height: 204rpx;
+	border-radius: 10rpx
 }
 
 .tab-h{
@@ -243,13 +245,11 @@
 	align-items: center;
 	height: 498rpx;
 	width: 100%;
-	background-color: #ddd;
 }
 
 .live_img{
 	height: 320rpx;
 	width: 678rpx;
-	background-color: #aaa;
 	margin-top: 36rpx
 }
 
@@ -258,7 +258,6 @@
 	align-items: center;
 	height: 44rpx;
 	width: 676rpx;
-	background-color: #999;
 	margin-top: 24rpx;
 }
 
@@ -302,7 +301,6 @@
 
 .videos_view{
 	width: 100%;
-	background-color: #ddd;
 	padding-left: 36rpx;
 	padding-right: 36rpx;
 	display: flex;
@@ -312,7 +310,6 @@
 .video_view{
 	width:324rpx;
 	height:388rpx;
-	background-color: #999;
 	margin-right: 30rpx;
 	margin-top: 36rpx;
 }
@@ -320,7 +317,6 @@
 .video_img{
 	width: 324rpx;
 	height: 320rpx;
-	background-color: #666;
 }
 
 .video_titleview{
@@ -352,16 +348,13 @@
 	opacity: 0.7;
 }
 
-.none_view{
-	display: flex;
-	width: 100%;
-	align-items: center;
-	justify-content: center
+
+.adsView{
+	background-color:#567894;
+	width:678rpx;
+	height:204rpx;
 }
 
-.none_text{
-	font-family: PingFangSC-Regular;
-	font-size: 30rpx;
-	color: #757A85;
-	letter-spacing: 0.14rpx;
+.wx-swiper-dots{
+	margin-bottom: 90rpx;
 }

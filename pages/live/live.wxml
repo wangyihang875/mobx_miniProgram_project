@@ -1,32 +1,35 @@
 <!--pages/live/live.wxml-->
+
+<scroll-view scroll-y="true" class="scoll-h" bindscrolltolower="loadMorePage">
+<block wx:if="{{props.LiveStore.total>0}}">
+<navigator wx:for="{{ props.LiveStore.liveList }}" wx:key="{{ item.id }}"  url="./liveDetail?linkurl={{item.linkurlEncode}}">
 <view class='live_view'>
-	<view class='live_img'></view>
+	<image src='{{item.picurl}}' class='live_img'/>
 	<view class='live_titleview'>
-		<text class='live_titletext'>国家医保局阿扎</text>
+		<text class='live_titletext'>{{item.title}}</text>
 	</view>
 	<view class='bar'></view>
 </view>
 
-<view class='live_view'>
-	<view class='live_img'></view>
-	<view class='live_titleview'>
-		<text class='live_titletext'>国家医保局阿扎</text>
-	</view>
-	<view class='bar'></view>
+</navigator>
+<view class='loadMore'  wx:if="{{props.LiveStore.hasMore}}">
+	<view>继续向上滑动加载更多内容</view>
 </view>
-
-<view class='live_view'>
-	<view class='live_img'></view>
-	<view class='live_titleview'>
-		<text class='live_titletext'>国家医保局阿扎</text>
-	</view>
-	<view class='bar'></view>
+<view class='loadMore'  wx:if="{{!props.LiveStore.hasMore}}">
+	<view>这是我的底线</view>
 </view>
-
-<view class='live_view'>
-	<view class='live_img'></view>
-	<view class='live_titleview'>
-		<text class='live_titletext'>国家医保局阿扎</text>
-	</view>
-	<view class='bar'></view>
-</view>
+</block>
+<block wx:else>
+		<view class='none_view'>
+				<block wx:if="{{props.LiveStore.isLoading}}">
+				<text class='none_text'>加载中...</text>
+			</block>
+			<block wx:else>
+				<view class='blank_view'>
+					<image class='none_img_v' src='../../images/icon_novideo.png'/>
+					<text class='none_text'>很抱歉，暂时没有视频内容~</text>
+				</view>
+			</block>
+		</view>
+	</block>
+</scroll-view>

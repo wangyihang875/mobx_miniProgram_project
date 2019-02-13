@@ -5,10 +5,32 @@
  align-items: center 
 } 
 
+.searchView{
+	width: 678rpx;
+	display: flex;
+	flex-direction: row;
+	align-items: center ;
+	justify-content: space-between
+}
+
+.searchBtn{
+	background-color: #fff;
+	margin-bottom: 20rpx
+}
+
+.searchBtn-hover{
+	background-color: #e4e4e4;
+}
+
+.searchBtnText{
+	font-size: 30rpx;
+	color: #757A85;
+}
+
 .searchbar{
 	background-color:#F3F3F3;
+	width: 600rpx;
 	height:76rpx;
-	width: 678rpx;
 	border-radius: 200rpx;
 	margin-top: 24rpx;
 	display: flex;
@@ -28,7 +50,6 @@
 	font-size: 30rpx;
 	color: #757A85;
 	letter-spacing: 0.14rpx;
-	
 }
 
 .label_view{
@@ -48,7 +69,6 @@
 	width: 678rpx;
 	display: flex;
 	flex-wrap: wrap;
-
 }
 
 .word_view{
@@ -75,4 +95,9 @@
 
 .his_view{
 	display: flex;
+	width: 678rpx;
+}
+
+.search_input{
+	font-size: 30rpx;
 }

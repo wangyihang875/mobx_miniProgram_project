@@ -130,17 +130,3 @@
   font-size: 14px;
   text-align: center;
 }
-
-.none_view{
-	display: flex;
-	width: 100%;
-	align-items: center;
-	justify-content: center
-}
-
-.none_text{
-	font-family: PingFangSC-Regular;
-	font-size: 30rpx;
-	color: #757A85;
-	letter-spacing: 0.14rpx;
-}

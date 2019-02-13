@@ -1,0 +1,3 @@
+<!--pages/live/liveDetail.wxml-->
+<!-- <web-view src="{{linkurl}}" bindload="loadSuccess"></web-view> -->
+<web-view src="{{linkurl}}" bindload="loadSuccess"></web-view>
